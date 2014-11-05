@@ -15,6 +15,8 @@
 		DD19333B1A01653900C15C39 /* libtins.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD1933391A01653900C15C39 /* libtins.a */; };
 		DD19333F1A0176B700C15C39 /* ofxLibtins.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD19333D1A0176B700C15C39 /* ofxLibtins.cpp */; };
 		DD3BEAF91A01EBDC00448D42 /* ofxThreadedImageLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEAF71A01EBDC00448D42 /* ofxThreadedImageLoader.cpp */; };
+		DD3BEB2C1A02F49900448D42 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB221A02F49900448D42 /* ofxJSONElement.cpp */; };
+		DD3BEB2D1A02F49900448D42 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DD3BEB2B1A02F49900448D42 /* jsoncpp.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E45BE97B0E8CC7DD009D7055 /* AGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9710E8CC7DD009D7055 /* AGL.framework */; };
 		E45BE97C0E8CC7DD009D7055 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */; };
@@ -216,6 +218,14 @@
 		DD1933471A018FFA00C15C39 /* ofxLibtinsPacketWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxLibtinsPacketWrapper.h; sourceTree = "<group>"; };
 		DD3BEAF71A01EBDC00448D42 /* ofxThreadedImageLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxThreadedImageLoader.cpp; sourceTree = "<group>"; };
 		DD3BEAF81A01EBDC00448D42 /* ofxThreadedImageLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxThreadedImageLoader.h; sourceTree = "<group>"; };
+		DD3BEB1D1A02A97F00448D42 /* noise.frag */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = noise.frag; sourceTree = "<group>"; };
+		DD3BEB1E1A02A97F00448D42 /* noise.vert */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = noise.vert; sourceTree = "<group>"; };
+		DD3BEB211A02F49900448D42 /* ofxJSON.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxJSON.h; sourceTree = "<group>"; };
+		DD3BEB221A02F49900448D42 /* ofxJSONElement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ofxJSONElement.cpp; sourceTree = "<group>"; };
+		DD3BEB231A02F49900448D42 /* ofxJSONElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ofxJSONElement.h; sourceTree = "<group>"; };
+		DD3BEB281A02F49900448D42 /* json-forwards.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "json-forwards.h"; sourceTree = "<group>"; };
+		DD3BEB291A02F49900448D42 /* json.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = json.h; sourceTree = "<group>"; };
+		DD3BEB2B1A02F49900448D42 /* jsoncpp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = jsoncpp.cpp; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E45BE9710E8CC7DD009D7055 /* AGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AGL.framework; path = /System/Library/Frameworks/AGL.framework; sourceTree = "<absolute>"; };
 		E45BE9720E8CC7DD009D7055 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
@@ -275,6 +285,7 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				DD3BEB1F1A02F49900448D42 /* ofxJSON */,
 				DD3BEAF51A01EBDC00448D42 /* ofxThreadedImageLoader */,
 				DD1932A11A01653900C15C39 /* ofxLibtins */,
 			);
@@ -588,6 +599,79 @@
 			path = ../../../addons/ofxThreadedImageLoader/src;
 			sourceTree = "<group>";
 		};
+		DD3BEB1C1A02A97F00448D42 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB1D1A02A97F00448D42 /* noise.frag */,
+				DD3BEB1E1A02A97F00448D42 /* noise.vert */,
+			);
+			name = shaders;
+			path = bin/data/shaders;
+			sourceTree = "<group>";
+		};
+		DD3BEB1F1A02F49900448D42 /* ofxJSON */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB201A02F49900448D42 /* src */,
+				DD3BEB241A02F49900448D42 /* libs */,
+			);
+			name = ofxJSON;
+			sourceTree = "<group>";
+		};
+		DD3BEB201A02F49900448D42 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB211A02F49900448D42 /* ofxJSON.h */,
+				DD3BEB221A02F49900448D42 /* ofxJSONElement.cpp */,
+				DD3BEB231A02F49900448D42 /* ofxJSONElement.h */,
+			);
+			name = src;
+			path = ../../../addons/ofxJSON/src;
+			sourceTree = "<group>";
+		};
+		DD3BEB241A02F49900448D42 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB251A02F49900448D42 /* jsoncpp */,
+			);
+			name = libs;
+			path = ../../../addons/ofxJSON/libs;
+			sourceTree = "<group>";
+		};
+		DD3BEB251A02F49900448D42 /* jsoncpp */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB261A02F49900448D42 /* include */,
+				DD3BEB2A1A02F49900448D42 /* src */,
+			);
+			path = jsoncpp;
+			sourceTree = "<group>";
+		};
+		DD3BEB261A02F49900448D42 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB271A02F49900448D42 /* json */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		DD3BEB271A02F49900448D42 /* json */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB281A02F49900448D42 /* json-forwards.h */,
+				DD3BEB291A02F49900448D42 /* json.h */,
+			);
+			path = json;
+			sourceTree = "<group>";
+		};
+		DD3BEB2A1A02F49900448D42 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				DD3BEB2B1A02F49900448D42 /* jsoncpp.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		E4328144138ABC890047C5CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +694,7 @@
 			children = (
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
+				DD3BEB1C1A02A97F00448D42 /* shaders */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
 				E4EEC9E9138DF44700A80321 /* openFrameworks */,
 				BB4B014C10F69532006C3DED /* addons */,
@@ -727,7 +812,9 @@
 				DD19333F1A0176B700C15C39 /* ofxLibtins.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
+				DD3BEB2D1A02F49900448D42 /* jsoncpp.cpp in Sources */,
 				DD3BEAF91A01EBDC00448D42 /* ofxThreadedImageLoader.cpp in Sources */,
+				DD3BEB2C1A02F49900448D42 /* ofxJSONElement.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,7 +915,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = "";
 				PRODUCT_NAME = NetworkStreamDebug;
-				USER_HEADER_SEARCH_PATHS = ../../../addons/ofxLibtins/libs/libtins/include/;
+				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxLibtins/libs/libtins/include/ ../../../addons/ofxJSON/libs/jsoncpp/include/";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -857,7 +944,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = "";
 				PRODUCT_NAME = NetworkStream;
-				USER_HEADER_SEARCH_PATHS = ../../../addons/ofxLibtins/libs/libtins/include/;
+				USER_HEADER_SEARCH_PATHS = "../../../addons/ofxLibtins/libs/libtins/include/ ../../../addons/ofxJSON/libs/jsoncpp/include/";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

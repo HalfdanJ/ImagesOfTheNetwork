@@ -6,12 +6,21 @@
 #include "ofxThreadedImageLoader.h"
 #include <queue>
 
+#include "ofxJSON.h"
 
-#define NUM_IMAGES 20
+#define NUM_IMAGES 100
 #define NUM_LOADERS 1
 
 struct imageElement {
     ofImage img;
+    ofVec2f pos;
+    float alpha;
+    int age;
+    float fadeSpeed;
+};
+
+struct textElement {
+    string text;
     ofVec2f pos;
     float alpha;
     int age;
@@ -43,9 +52,9 @@ public:
     void newRawPacket(Packet & packet);
     void newHttpPacket(ofxLibtinsHttpPacket & packet);
     
-    ofxThreadedImageLoader loader[NUM_LOADERS];
 
     imageElement images[NUM_IMAGES];
+    vector<textElement> texts;
     vector<string> loadingUrls;
     queue<string> imagesToLoad;
     int imageidx;
@@ -53,5 +62,10 @@ public:
     int loaderidx;
     
     vector<string> imageExtensions;
+    
+    ofShader shader;
+    ofFbo fbo;
+    
+    ofxJSONElement json;
 };
 
