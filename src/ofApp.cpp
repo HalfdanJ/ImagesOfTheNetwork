@@ -16,7 +16,7 @@ float easing(float t, float b, float c, float d) {
 void ofApp::setup(){
     
 
-    ofAddListener(sniffer.newHttpPacketEvent, this, &ofApp::newHttpPacket);
+    ofAddListener(sniffer.httpPacketEvent, this, &ofApp::newHttpPacket);
     
     sniffer.startSniffing("en0");
     //ofAddListener(sniffer.newRawPacketEvent, this, &ofApp::newRawPacket);
@@ -34,6 +34,13 @@ void ofApp::setup(){
     
     
     shader.load("shaders/noise");
+    
+    font.load("HelveticaNeue.dfont", 14);
+    
+    ofEnableAntiAliasing();
+    ofEnableSmoothing();
+    
+    connect.load("connect.png");
 }
 
 void ofApp::newRawPacket(Packet & packet){
@@ -49,7 +56,7 @@ void ofApp::newRawPacket(Packet & packet){
 
 
 
-void ofApp::newHttpPacket(ofxLibtinsHttpPacket & packet){
+void ofApp::newHttpPacket(ofxSnifferHttpPacket & packet){
     string extension = ofFilePath().getFileExt(packet.request);
     
     
@@ -78,7 +85,7 @@ void ofApp::newHttpPacket(ofxLibtinsHttpPacket & packet){
         if(!found){
             loadingUrls.push_back(url);
             
-            string filename = ofToString(loaderidx++)+"."+extension;
+            string filename = "images/"+ofToString(loaderidx++)+"."+extension;
             
             if(loaderidx > 500)
                 loaderidx = 0;
@@ -166,10 +173,12 @@ void ofApp::update(){
         }
     }
     
+    int numImages = 0;
     for(int i=0;i< NUM_IMAGES;i++){
         if(images[i].alpha > 0){
             images[i].age ++;
             images[i].alpha -= 0.003*images[i].fadeSpeed* 60.0/ofGetFrameRate();
+            numImages ++;
         }
     }
     
@@ -181,10 +190,26 @@ void ofApp::update(){
             texts.erase(texts.begin()+i);
         }
     }
+    
+    if(numImages > 0){
+        if(connectAlpha > -1){
+            connectAlpha -= 0.02;
+        }
+    } else {
+        if(connectAlpha < 1){
+            connectAlpha += 0.02;
+        }
+    }
+    
+
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    if(fbo.getWidth() != ofGetWidth() || fbo.getHeight() != ofGetHeight()){
+        fbo.allocate(ofGetWidth(), ofGetHeight());
+    }
+    
     fbo.begin();
     
     ofClear(0,0,0);
@@ -253,7 +278,10 @@ void ofApp::draw(){
     }
     
     
-
+    ofSetColor(255, 255, 255, 255*connectAlpha);
+    ofSetRectMode(OF_RECTMODE_CENTER);
+    connect.draw(ofGetWidth()*0.5, ofGetHeight()*0.5);
+    ofSetRectMode(OF_RECTMODE_CORNER);
 }
 
 //--------------------------------------------------------------

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxLibtins.h"
+#include "ofxSniffer.h"
 #include "ofEvents.h"
 #include "ofxThreadedImageLoader.h"
 #include <queue>
@@ -47,10 +47,10 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-    ofxLibtinsSimpleSniffer sniffer;
+    ofxSniff sniffer;
     
     void newRawPacket(Packet & packet);
-    void newHttpPacket(ofxLibtinsHttpPacket & packet);
+    void newHttpPacket(ofxSnifferHttpPacket & packet);
     
 
     imageElement images[NUM_IMAGES];
@@ -59,12 +59,16 @@ public:
     queue<string> imagesToLoad;
     int imageidx;
     
+    ofTrueTypeFont font;
+    float connectAlpha;
+    
     int loaderidx;
     
     vector<string> imageExtensions;
     
     ofShader shader;
     ofFbo fbo;
+    ofImage connect;
     
     ofxJSONElement json;
 };
